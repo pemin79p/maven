@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Login Form</h2>
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      // Username validation: min 4 characters
+      if (username.length < 4) {
+        alert("Username must be at least 4 characters long.");
+        return;
+      }
+
+      // Password validation: min 6 characters, at least one number, one special char
+      const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+
+      if (!passwordRegex.test(password)) {
+        alert("Password must be at least 6 characters long and include at least one number and one special character.");
+        return;
+      }
+
+      alert("Login successful!");
+    });
+  </script>
+
+</body>
+</html>
